@@ -1,2 +1,0 @@
-# Homework
-FinTech Homework Submissions

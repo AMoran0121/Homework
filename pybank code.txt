@@ -1,0 +1,111 @@
+Pybank
+
+# Import from Gitlab 
+from pathlib import Path
+import csv
+print(f"{Path.cwd()}")
+
+# Set file path
+csvpath = Path("budget_data.csv")
+
+# Initialize variable to hold monthly pnl change
+pnl_change = []
+
+# Initialize line_num variable
+line_num = 0
+
+# Define Variables
+
+profitable_month = 0
+unprofitable_month = 0
+total_pnl = []
+date = []
+
+# Open the input path as a file object
+with open(csvpath, 'r') as csvfile:
+     
+    # Pass in the csv file to the csv.reader() function
+    # (with ',' as the delmiter/separator) and return the csvreader object
+    csvreader = csv.reader(csvfile, delimiter=',')
+  
+    first_row = next(csvreader)
+    
+    # represent january
+    second_row = next(csvreader) 
+    
+    
+    
+    
+    print(f"{first_row} <---- HEADER")
+
+    previous_pnl = int(second_row[1])
+    previous_month = second_row
+    
+    # print(f"{second_row} data")
+
+    
+        # Read each row of data after the header
+
+    total_pnl.append(previous_pnl)
+    date.append(previous_month)
+        
+    for row in csvreader:
+        # Print the row
+        # print(row)
+        # Set pnl variable equal to the value in the 2nd column of each row
+        pnl = int(row[1])
+        month = row[0]
+              
+        # Append the row salary value to the list of salaries
+       # salaries.append(salary)
+        total_pnl.append(pnl)
+        date.append(month)
+        
+        # define variables
+        current_pnl = pnl
+                
+        change = current_pnl - previous_pnl
+        pnl_change.append(change)
+        
+        previous_pnl = current_pnl
+        
+print(pnl_change)
+        
+sum_pnl = sum(total_pnl)
+print(sum_pnl)        
+
+sum_months = len(date)
+print(sum_months)        
+
+max_month = max(pnl_change)
+print(max_month)
+
+min_month = min(pnl_change)
+print(min_month)
+
+average_pnl = sum(pnl_change) / len(pnl_change)
+print(average_pnl)
+
+print(total_pnl)
+print(date)
+
+
+
+
+# Define variables
+# count off date to get number of 
+# total sum off Profit/Loss
+
+# Write new column called month_over_month_variance
+# Calculate average off month_over_month_variance
+
+# Maximum increase in profits off month_over_month_variance
+# Maximum decrease in profits off month_over_month_variance
+
+# print out the financial analysis
+# print("---------Financial Analysis----------")
+# print(f"Total Months: {count}")
+# print(f"Total PnL: {total}")
+# print(f"Average Change: {average}")
+# print(f"Greatest Increase in Profits: {month} {maximum_pnl}")
+# print(f"Greatest Decrease in Profits: {month} {minimum_pnl}")
